@@ -521,6 +521,17 @@ function PollEditCtrl($scope, $location, Poll, Poll2, $http) {
 		
 	}
 }
+//
+function PollNewCat($scope, $location,Poll){
+
+console.log("Poll:",Poll);
+console.log("Scope:",$scope);
+$scope.createCat = function() {
+
+	console.log("Cat Creada");
+}
+}
+
 
 // Controller for creating a new poll
 function PollNewCtrl($scope, $location, Poll) {

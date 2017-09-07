@@ -220,6 +220,8 @@ app.get('/pollsito3', function(req, res){
 
 app.post('/polls', routes.create);
 
+app.post('/cat',routes.createcat)
+
 app.post('/vote', routes.vote);
 
 app.get('/logout',routes.logout);

@@ -122,6 +122,14 @@ exports.poll = function(req, res) {
 	});
 };
 
+
+// create category
+exports.createcat = function(req,res){
+
+
+
+}
+
 // JSON API for creating a new poll
 exports.create = function(req, res) {
 	console.log(req.session.user_id);

@@ -1,7 +1,7 @@
 <div class="page-header">
 	<div class="row">
 		<div class="col-xs-9">
-	<h1>Lista de Encuestas (Testing)</h1>
+	<h1>Mis encuestas</h1>
 		</div>
 		<div class="col-xs-3">
 					<a href="#/config/{{poll._id}}" class="btn btn-default">	<span class="glyphicon glyphicon-cog"></span></a>
@@ -69,7 +69,7 @@
 </div>
 <div class="row" ng-switch on="polls.length">
 	<ul ng-switch-when="0">
-		<li><em>No hay encuestas. Te gustaría <a href="#/new">crear una</a>?</li>
+		<li><em>No hay nada. Te gustaría <a href="#/new">crear una encuesta</a> o una<a href="#/newcat"> categoría</a>?</li>
 	</ul>
 		<table class="table table-condensed table-hover table-striped" ng-switch-default>
 			<thead> <tr> <th>#</th> <th>Titulo</th> <th>Tipo</th><th>Categoria </th> <th>Controles</th></tr> </thead>
