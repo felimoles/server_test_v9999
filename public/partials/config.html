@@ -1,0 +1,19 @@
+<div class="page-header">
+	<h1>Configuración</h1>
+</div>
+<form role="form" ng-submit="config()">
+	<div class="form-group">
+        <span>{{name}}</span>
+
+		<div class="form-group">
+		<label >Contraseña Actual</label>
+		<input type="password"  class="form-control"  >
+			<label for="pollQuestion">Nueva Contraseña</label>
+		<input type="password"  class="form-control" id="pollQuestion" ng-attr-placeholder="Ingresa tu pregunta">
+			<label for="pollQuestion">Confirma nueva Contraseña</label>
+		<input type="password"  class="form-control" id="pollQuestion" ng-attr-placeholder="Ingresa tu pregunta">
+	</div>
+		<button class="btn btn-primary pull-right" type="submit">Guardar</button>
+		</form>
+    	<a href="#/polls" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span>Volver a la lista</a>
+	</div>

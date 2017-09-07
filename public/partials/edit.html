@@ -1,0 +1,118 @@
+<div class="page-header">
+	<h1>Editar Encuesta</h1>
+</div>
+<form role="form" ng-submit="createPoll()">
+	<div class="form-group">
+		<label for="pollQuestion">Pregunta</label>
+		<input type="text" ng-model="polltipo.pregunta" class="form-control" id="pollQuestion" ng-attr-placeholder="Ingresa tu pregunta">
+	</div>
+
+
+	<div class="form-group">
+		<label for="rtQuestion">Tiempo Real</label>
+		<select type="text" ng-model="polltipo.RealTime" 
+			class="form-control" placeholder="¿En tiempo real?" 
+			ng-change="getDRT(polltipo.RealTime)"
+			placeholder="En tiempo real?">
+			<option value="false">No</option>
+			<option value="true">Si</option>
+		</select>
+	</div>
+
+	<div class="form-group" ng-show="polltipo.RealTime">
+		<label>Tiempo de duración</label>
+		 <div class="col-xs-6">
+			<input type="number" ng-model="polltipo.TimeToExpire"
+			 maxlength="4" min="1" step="1" class="form-control"
+			 placeholder="{{polltipo.TimeToExpire}} Segundos...">
+ 		</div>
+		 <br>
+		<br>
+	</div>
+	
+
+	<div class="form-group">
+		<label for="typeQuestion">Tipo de Encuesta</label>
+		
+		<select type="text" ng-model="polltipo.tipo" class="form-control" 
+		id="typeQuestion" placeholder="Selecciona tipo de encuesta" 
+		ng-change="getDataSelect(polltipo.tipo)">
+			<option value="-1">Ninguna</option>
+			<option value="0">Seleccion Multiple</option>
+			<option value="1">Seleccion M con respuesta Correcta</option>
+			<option value="2">Rango</option>
+		</select>
+	</div>
+	
+	<div class="form-group" ng-show="opcion == 0">>
+		<label>Opciones:</label>
+		<div ng-repeat="choice in polltipo1.elecciones">
+			<input type="text" ng-model="choice.text" class="form-control" ng-attr-placeholder="Enter choice {{$index+1}} text"><br>
+		</div>
+	</div>
+	<fieldset ng-show="opcion == 1">
+		<legend>Opciones:</legend>
+		<div class="row" ng-repeat="choice in polltipo2.elecciones">
+			<div class="col-md-6" >
+				<div class="input-group">
+					<span class="input-group-addon">
+                        <input type="radio" ng-model="$parent.isCorrect" name="group1" value="{{$index}}"
+                            ng-change="newValue($parent.isCorrect)">
+					</span>
+					<input type="text" class="form-control" ng-model="choice.text" ng-attr-placeholder="Enter choice {{$index+1}} text">
+				</div><!-- /input-group -->
+			</div><br><br class="hidden-sm hidden-xs"><!-- /.col-lg-6 -->
+		</div>
+	</fieldset>
+	
+	<div class="form-group" ng-show="opcion == 2">
+ 		
+		 <div class="col-xs-3">
+			<input type="number" ng-model="polltipo.Min" maxlength="4" min="0" step="1" class="form-control" placeholder="Minimo">
+			<input type="number" ng-model="polltipo.Max" maxlength="4" min="0" step="1" class="form-control" placeholder="Maximo">
+ 		</div>
+		 
+		 
+		 <div>
+			 <br>
+			 <br>
+			 <br>
+			 <br>
+			><label>Opciones:</label>
+			<div ng-repeat="choice in polltipo3.elecciones">
+				<input type="text" ng-model="choice.text" class="form-control" ng-attr-placeholder="Enter choice {{$index+1}} text ;3"><br>
+				
+			</div>
+		 </div>
+	</div>	
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<button type="button" class="btn btn-default" ng-click="addChoice()" ng-disabled="polltipo.tipo == 0" >
+				<span class="glyphicon glyphicon-plus"></span> Añadir Otro</button>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label for="pollQuestion">Categorías</label>
+			<tags-input ng-model="cat.catSchema"  placeholder="Ingresa tus categorías"  min-tags="1" replace-spaces-with-dashes="false"> </tags-input>
+		
+	
+	
+	</div> 
+
+	
+	<p><hr></p>
+	
+	<div class="row">
+		<div class="col-xs-6">
+			<a href="#/polls" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span>Volver a la lista</a>
+		</div>
+		<div class="col-xs-6">
+			<button class="btn btn-primary pull-right" type="submit">Guardar nueva encuesta</button>
+		</div>
+	</div>
+	
+	<p></p>
+</form>
+

@@ -1,0 +1,21 @@
+{
+  "name": "dwnodepolls",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "go": "nodemon app.js"
+  },
+  "dependencies": {
+    "angular-animate": "^1.6.5",
+    "chart.js": "^2.6.0",
+    "express": "3.4.3",
+    "jade": "*",
+    "mongoose": ">= 3.8.0",
+    "shortid": "^2.2.8",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

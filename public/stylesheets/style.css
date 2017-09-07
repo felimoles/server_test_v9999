@@ -1,0 +1,52 @@
+body {
+  padding-top: 50px;
+}
+
+.tab-content .lead {
+	margin-top: 20px;
+}
+.navbar-inverse{
+	background-color:green;
+
+}
+.result-table {
+	margin: 20px 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.result-table td {
+	padding: 8px;
+}
+
+.result-table > tbody > tr > td:first-child {
+	width: 25%;
+	max-width: 300px;
+	text-align: right;
+}
+.choices .form-control{
+	display: inline-block;
+    width: 90%;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+	vertical-align: middle !important;
+}
+
+table tr td.rightScroll {
+    width: 20px;
+    height: 20px;
+ 
+   
+   display:table-cell;
+    
+   
+}
+
+table tr td.rightScroll div {
+ width:20px;
+    height:20px;
+    top:28px;
+   
+    right:0;
+    overflow-y: scroll;
+}
