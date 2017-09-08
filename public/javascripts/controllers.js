@@ -526,8 +526,9 @@ function PollNewCat($scope, $location,Poll){
 
 	var _cat = $scope.catnew;
 $scope.createCat = function() {
-
+		
 	console.log("Cat Creada");
+		$location.path('polls');
 }
 }
 

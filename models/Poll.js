@@ -41,10 +41,6 @@ var choiceSchema = new mongoose.Schema({
 	votes: [voteSchema]
 });
 
-var categoriaSchema = new mongoose.Schema({
-	text: String,
-	pollSchema: [PollSchema]
-});
 
 // Document schema for polls
 var PollSchema = new mongoose.Schema({
@@ -61,6 +57,11 @@ var PollSchema = new mongoose.Schema({
 	choices_tipo1: [choiceSchema],
 	choices_tipo2: [choiceSchema2],
 	choices_tipo3: [choiceSchema3]
+});
+
+var categoriaSchema = new mongoose.Schema({
+	text: String,
+	polls: [PollSchema]
 });
 
 //Auto-increment
