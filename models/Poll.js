@@ -40,7 +40,11 @@ var choiceSchema = new mongoose.Schema({
 	text: String,
 	votes: [voteSchema]
 });
-
+var categoriaSchema = new mongoose.Schema({
+	text: String,
+	_idCat: {type:String,ref:"User"}
+	
+});
 
 // Document schema for polls
 var PollSchema = new mongoose.Schema({
@@ -56,13 +60,11 @@ var PollSchema = new mongoose.Schema({
 	Max: Number,
 	choices_tipo1: [choiceSchema],
 	choices_tipo2: [choiceSchema2],
-	choices_tipo3: [choiceSchema3]
+	choices_tipo3: [choiceSchema3],
+	categoria:[categoriaSchema]
 });
 
-var categoriaSchema = new mongoose.Schema({
-	text: String,
-	polls: [PollSchema]
-});
+
 
 //Auto-increment
 //PollSchema.plugin(autoIncrement.plugin, { model: 'polls', field: '_NumId'});
@@ -88,6 +90,7 @@ var user_schema = Schema({
 	},
 	universidad: { type:String, required:"La universidad es un campo obligatorio" },
 	email: {type:String,required:"El correo es obligatorio",match:email_match, unique: true},
+
 });
 
 user_schema.virtual("password_confirmation").get(function(){

@@ -9,10 +9,12 @@ function PollListCtrl2($scope) {
 
  function PollListCtrl($scope, Poll,$http) {
 	$scope.polls = Poll.query();
+	console.log(Poll);
 	var refresh = function(){
 
 		$http.get('/polls/polls').success(function(response){
 			$scope.polls = response;
+			console.log(response);
 			console.log("clean");
 
 		});
@@ -47,10 +49,6 @@ function PollListCtrl2($scope) {
 	$scope.cancel = function() {
 		$scope.showModal = false;
 	};
-
-
-
-
 	$scope.logout =function(){
 		if (confirm("Seguro que desea salir?")) {
 			$http.get('/logout/');
@@ -525,6 +523,7 @@ function PollEditCtrl($scope, $location, Poll, Poll2, $http) {
 function PollNewCat($scope, $location,Poll){
 
 	var _cat = $scope.catnew;
+	
 $scope.createCat = function() {
 		
 	console.log("Cat Creada");
