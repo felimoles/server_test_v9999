@@ -40,11 +40,6 @@ var choiceSchema = new mongoose.Schema({
 	text: String,
 	votes: [voteSchema]
 });
-var categoriaSchema = new mongoose.Schema({
-	text: String,
-	_idCat: {type:String,ref:"User"}
-	
-});
 
 // Document schema for polls
 var PollSchema = new mongoose.Schema({
@@ -55,13 +50,20 @@ var PollSchema = new mongoose.Schema({
 	Activa: { type: Boolean },
 	TimeToExpire: { type: Number },
 	categoria: { type: String },
+	titulo:{type: String},
 	question: { type: String, required: true },
 	Min: Number,
 	Max: Number,
 	choices_tipo1: [choiceSchema],
 	choices_tipo2: [choiceSchema2],
-	choices_tipo3: [choiceSchema3],
-	categoria:[categoriaSchema]
+	choices_tipo3: [choiceSchema3]
+});
+
+var categoriaSchema = new mongoose.Schema({
+	text: String,
+	Polls: [PollSchema],
+	_idCat: {type:String,ref:"User"}
+	
 });
 
 
