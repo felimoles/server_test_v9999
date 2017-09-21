@@ -11,7 +11,10 @@ if (process.env.VCAP_SERVICES) {
 
 // Get Poll schema and model
 var PollSchema = require('../models/Poll.js').PollSchema;
+var catSchema = require('../models/Poll.js').categoriaSchema;
+
 var Poll = db.model('polls', PollSchema);
+var Cat = db.model('cats', catSchema);
 
 var user_schema = require('../models/Poll.js').user_schema;
 var User = db.model('User', User);
@@ -43,6 +46,23 @@ exports.prueba = function(req, res) {
 		});
 	//res.render('prueba');
 };
+
+exports.cat = function(req,res){
+
+	var catid = req.params.id;
+	Cat.findById(catid,'', {lean: true}, function(err,cate){
+
+		if(cate){
+			res.json(cate);
+
+		}else{
+			res.json({error:true});
+		}
+
+	});
+
+
+}
 
 // JSON API for getting a single poll
 exports.poll = function(req, res) {
@@ -123,12 +143,7 @@ exports.poll = function(req, res) {
 };
 
 
-// create category
-exports.createcat = function(req,res){
 
-
-
-}
 
 // JSON API for creating a new poll
 exports.create = function(req, res) {
@@ -153,7 +168,7 @@ exports.create = function(req, res) {
 						Activa: reqBody.Activa,
 						TimeToExpire: reqBody.TimeToExpire*1000,
 						choices_tipo1: choices,
-						catSchema: cat
+						Cat: cat
 						
 					};
 			break;
@@ -165,7 +180,7 @@ exports.create = function(req, res) {
 						Activa: reqBody.Activa,
 						TimeToExpire: reqBody.TimeToExpire*1000,
 						choices_tipo2: choices,
-					catSchema: cat};
+					Cat: cat};
 			break;
 		case 2:
 			choices = reqBody.choices_tipo3.filter(function(v) { return v.text != ''; });
@@ -175,7 +190,7 @@ exports.create = function(req, res) {
 						Activa: reqBody.Activa,
 						TimeToExpire: reqBody.TimeToExpire*1000,
 						choices_tipo3: choices,
-						catSchema: cat};
+						id_Cat: cat};
 			break;
 	}
 
@@ -355,22 +370,24 @@ exports.createUser = function(req, res) {
 	});
 };
 
+// Json list cats
 
+exports.catlist = function(req, res){
+	Cat.find({id_Cat: req.session.user_id}, function(error, cats){
+		console.log("cat",req.session.user_id);
+		res.json(cats);
+		console.log("dad",cats);
+	});
+
+}
 
 // JSON API for list of polls
 exports.list = function(req, res) {
-	// Query Mongo for polls, just get back the question text
-/*	Poll.find({id_User: req.session.user_id},{'catSchema':2}, function(error, cat) {
 
-		res.json(cat);
-		console.log(cat);
-		
-	});
-*/
-
-	Poll.find({id_User: req.session.user_id}, ['question', 'tipo',['catSchema']].toArray, function(error, polls) {
-
+	Poll.find({id_User: req.session.user_id}, function(error, polls) {
+		console.log("list",req.session.user_id);
 		res.json(polls);
+		//console.log("polls:",polls);
 	//	console.log(polls);
 	//console.log("cat:",polls.catSchema);
 	});

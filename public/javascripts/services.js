@@ -1,11 +1,18 @@
 // Angular service module for connecting to JSON APIs
-angular.module('pollServices', ['ngResource','ngTagsInput']).
+angular.module('pollServices', ['ngResource']).
 	factory('Poll', function($resource) {
 		return $resource('polls/:pollId', {}, {
 			// Use this method for getting a list of polls
 			query: { method: 'GET', params: { pollId: 'polls' }, isArray: true }
 		})
 	}).
+		factory('Cat', function($resource) {
+		return $resource('cat/:catId', {}, {
+			// Use this method for getting a list of cats
+			query: { method: 'GET', params: { catId: 'cats' }, isArray: true }
+		})
+	}).
+	
 	factory('socket', function($rootScope) {
 		var socket = io.connect();
 		return {

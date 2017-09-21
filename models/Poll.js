@@ -54,6 +54,7 @@ var PollSchema = new mongoose.Schema({
 	question: { type: String, required: true },
 	Min: Number,
 	Max: Number,
+	id_Cat:{type:String,ref:"categoriaSchema"},
 	choices_tipo1: [choiceSchema],
 	choices_tipo2: [choiceSchema2],
 	choices_tipo3: [choiceSchema3]
@@ -61,8 +62,7 @@ var PollSchema = new mongoose.Schema({
 
 var categoriaSchema = new mongoose.Schema({
 	text: String,
-	Polls: [PollSchema],
-	_idCat: {type:String,ref:"User"}
+	id_Cat: {type:String,ref:"User"}
 	
 });
 
@@ -75,7 +75,7 @@ var password_validation = {
 			validator: function(p){
 				this.password_confirmation == p;
 			},
-			message: "Las contraseñas no son iguales"
+			message: "Contraseña Guardada"
 		}
 
 var email_match = [/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, "Coloca un email válido"];
@@ -108,4 +108,6 @@ module.exports.User = User;
 var Poll = mongoose.model("polls", PollSchema);
 module.exports.Poll = Poll;
 
+var Cat = mongoose.model("cats", categoriaSchema);
+module.exports.Cat = Cat;
 // Subdocument schema for votes

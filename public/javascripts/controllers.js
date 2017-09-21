@@ -7,9 +7,11 @@ function PollListCtrl2($scope) {
 	console.log("scope",$scope);
 }
 
- function PollListCtrl($scope, Poll,$http) {
+ function PollListCtrl($scope, Poll,$http, Cat) {
 	$scope.polls = Poll.query();
-	console.log(Poll);
+	$scope.cat1 = Cat.query();
+	//console.log(Poll);
+	
 	var refresh = function(){
 
 		$http.get('/polls/polls').success(function(response){
@@ -21,7 +23,7 @@ function PollListCtrl2($scope) {
 	}
 	//refresh();
 	$scope.delete = function(poll_id) {
-		var Polln = new Poll();
+		//var Polln = new Poll();
 		var id = poll_id;
 		if (confirm("Seguro que desea borrar esta encuesta?")) {
 		//	console.log("asdsdfasdfasdsadasd",id);
@@ -57,6 +59,41 @@ function PollListCtrl2($scope) {
 	
 	};
 
+	$scope.addCategoria = function(){
+			var ad = $scope.polls[0];
+			console.log(ad);
+			var iduser = ad._id;
+			var catTemp = { text: "helo",
+							id_Cat:ad.id_User,	
+							};
+			console.log(ad);
+			console.log(iduser);
+			var newCat = new Cat(catTemp);
+			$http.post('/cat/'+iduser, JSON.stringify(catTemp)).then(function(){
+							$location.path('polls');
+						});	
+
+
+				/*
+				$http.post('/pop/'+Poll2._id, JSON.stringify(pollAux)).then(function(){
+							$location.path('polls');
+						});
+
+
+					newCat.$save(function(p, resp) {
+						if(!p.error) {
+							// If there is no error, redirect to the main view
+						//	$location.path('polls');
+							//$location.path('mostrarEn/'+newPoll._id);
+						} else {
+							alert('Could not create Cat');
+						}
+					});*/
+
+
+		//console.log("creada");
+
+	}
 	
 }
 
@@ -520,16 +557,7 @@ function PollEditCtrl($scope, $location, Poll, Poll2, $http) {
 	}
 }
 //
-function PollNewCat($scope, $location,Poll){
 
-	var _cat = $scope.catnew;
-	
-$scope.createCat = function() {
-		
-	console.log("Cat Creada");
-		$location.path('polls');
-}
-}
 
 
 // Controller for creating a new poll

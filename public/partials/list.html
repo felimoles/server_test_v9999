@@ -75,7 +75,7 @@
 		<li><em>No hay nada. Te gustaría <a href="#/new">crear una encuesta</a> o una<a href="#/newcat"> categoría</a>?</li>
 	</ul>
 		<table class="table table-condensed table-hover table-striped" ng-switch-default>
-			<thead> <tr> <th>#</th> <th>Titulo</th> <th>Tipo</th><th>Categoria </th> <th>Controles</th></tr> </thead>
+			<thead> <tr> <th>#</th> <th>Categoría</th> <th>Tipo</th> <th>Controles</th></tr> </thead>
 			<tr ng-repeat="poll in polls | filter:query">
 				
 
@@ -97,16 +97,7 @@
 						</td>
 				
 
-					<td  style="width:20%">
-				
-						<h6>
-							<p>
-						<span ng-repeat="cat in poll.catSchema track by $index">
-					 {{cat.text}}{{$last ? '.' : ', '}}
-					 </span>
-					 </p>
-					 </h6>
-					 </td>
+					
 				<td >
 					<div class="btn-group pull-left" role="group">
 						<a href="#/pollpop/{{poll._id}}" type="button" class="btn btn-default">
@@ -132,7 +123,7 @@
 
 						<form role="form" ng-submit="addCategoria()">
 							<div class="col-md-6">
-					<input type="text"  class="form-control" id="pollcat" ng-attr-placeholder="Ingresa tu nueva Categoría">
+					<input type="text"  class="form-control" ng-attr-placeholder="Ingresa tu nueva Categoría">
 							</div>
 							<div class="col-md-1">
 					<button class="btn btn-default pull-left" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Agregar</button>

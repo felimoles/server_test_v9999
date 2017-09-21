@@ -19,7 +19,9 @@ if (process.env.VCAP_SERVICES) {
 
 // Get Poll schema and model
 var PollSchema = require('./models/Poll.js').PollSchema;
+var categoriaSchema = require('./models/Poll.js').categoriaSchema;
 var Poll = db.model('polls', PollSchema);
+var Cat =  db.model('cats',categoriaSchema);
 
 // Get Poll schema and model
 var PollSchema = require('./models/Poll.js').PollSchema;
@@ -88,7 +90,13 @@ app.post('/sesion', routes.session);
 
 app.get('/polls/polls',  routes.list);
 
+app.get('/cat/cats',routes.catlist);
+
+app.get('/cat/:id',  routes.cat);
+
 app.get('/polls/:id', routes.poll);
+
+app.post('/pollscat/:id',routes.cat);
 
 app.get('/prueba', routes.prueba);
 
@@ -220,7 +228,24 @@ app.get('/pollsito3', function(req, res){
 
 app.post('/polls', routes.create);
 
-app.post('/cat',routes.createcat)
+app.post('/cat/:id', function(req, res){
+
+	var catcat = new Cat({
+		text: req.body.text,
+		id_Cat: req.body.id_Cat,
+	});
+
+
+	catcat.save(function(error) {
+   console.log("Your bee has been saved!");
+ if (error) {
+    console.error(error);
+  }
+});
+	console.log("req",req.params.id);
+	console.log(req.body.text);
+
+})
 
 app.post('/vote', routes.vote);
 

@@ -11,7 +11,10 @@ angular.module('pollz', ['pollServices', 'ui.bootstrap.modal']).
 						.then(function(response){
 							return response.data;
 						})
+
+					
 					}
+
 				}
 			 }).
 			when('/polled/:pollId', { templateUrl: 'partials/item.html', controller: PollItemCtrl2, resolve: {
@@ -35,7 +38,6 @@ angular.module('pollz', ['pollServices', 'ui.bootstrap.modal']).
 				}
 			 }).
 			when('/new', { templateUrl: 'partials/new.html', controller: PollNewCtrl }).
-			when('/newcat', { templateUrl: 'partials/newcat.html', controller: PollNewCat }).
 			when('/config', { templateUrl: 'partials/config.html', controller: PollConfigCrtl,resolve:{
 							Data: function($http, $route){
 					return $http.get('/index')
